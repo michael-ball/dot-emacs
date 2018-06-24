@@ -61,7 +61,7 @@
 ;;; base16
 (use-package base16-theme
   :ensure base16-theme)
-(load-theme 'base16-default-dark t)
+(load-theme 'base16-classic-dark t)
 
 ;;; airline-themes
 (use-package airline-themes
