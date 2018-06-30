@@ -239,7 +239,7 @@
 (use-package lsp-rust
   :ensure lsp-rust)
 (with-eval-after-load 'lsp-mode
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  (setq lsp-rust-rls-command '("rls"))
   (require 'lsp-rust))
 
 ;;; lsp-go
