@@ -41,7 +41,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (git-gutter emamux use-package lsp-imenu elixir-mode web-mode lsp-go lsp-javascript-typescript multiple-cursors lsp-python lsp-rust lsp-vue company-lsp lsp-ui lsp-mode helm-company company json-mode helm-flycheck flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides helm-cscope helm-go-package helm-pydoc magit airline-themes all-the-icons base16-theme go-mode helm neotree powerline rust-mode)))
+    (csound-mode git-gutter emamux use-package lsp-imenu elixir-mode web-mode lsp-go lsp-javascript-typescript multiple-cursors lsp-python lsp-rust lsp-vue company-lsp lsp-ui lsp-mode helm-company company json-mode helm-flycheck flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides helm-cscope helm-go-package helm-pydoc magit airline-themes all-the-icons base16-theme go-mode helm neotree powerline rust-mode)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -319,6 +319,11 @@
 (use-package emamux
   :ensure emamux)
 (global-set-key (kbd "C-z") emamux:keymap)
+
+;;; csound
+(use-package csound-mode
+  :ensure csound-mode)
+(require 'csound-mode)
 
 (provide '.emacs)
 ;;; .emacs ends here
