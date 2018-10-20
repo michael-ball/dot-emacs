@@ -5,7 +5,7 @@
 (package-initialize)
 
 (when (window-system)
-  (set-frame-font "Iosevka:pixelsize=12"))
+  (set-frame-font "Iosevka Term SS10:pixelsize=12"))
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -32,9 +32,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#151515" "#ac4142" "#90a959" "#f4bf75" "#6a9fb5" "#aa759f" "#6a9fb5" "#d0d0d0"])
+ '(ansi-term-color-vector
+   [unspecified "#151515" "#ac4142" "#90a959" "#f4bf75" "#6a9fb5" "#aa759f" "#6a9fb5" "#d0d0d0"])
  '(custom-safe-themes
    (quote
-    ("2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "9be1d34d961a40d94ef94d0d08a364c3d27201f3c98c9d38e36f10588469ea57" "73ad471d5ae9355a7fa28675014ae45a0589c14492f52c32a4e9b393fcc333fd" "760ce657e710a77bcf6df51d97e51aae2ee7db1fba21bbad07aab0fa0f42f834" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" default)))
+    ("36282815a2eaab9ba67d7653cf23b1a4e230e4907c7f110eebf3cdf1445d8370" "2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "9be1d34d961a40d94ef94d0d08a364c3d27201f3c98c9d38e36f10588469ea57" "73ad471d5ae9355a7fa28675014ae45a0589c14492f52c32a4e9b393fcc333fd" "760ce657e710a77bcf6df51d97e51aae2ee7db1fba21bbad07aab0fa0f42f834" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" default)))
  '(lsp-ui-peek-always-show nil)
  '(lsp-ui-sideline-enable t)
  '(lsp-ui-sideline-ignore-duplicate t)
@@ -82,7 +86,7 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq inhibit-compacting-font-caches t)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-theme (if (display-graphic-p) 'icons 'nerd))
 
 ;;; helm
 (use-package helm
