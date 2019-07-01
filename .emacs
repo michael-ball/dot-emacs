@@ -5,7 +5,7 @@
 (package-initialize)
 
 (when (window-system)
-  (set-frame-font "Iosevka Term SS10:pixelsize=12"))
+  (set-frame-font "Iosevka SS10:pixelsize=16"))
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -32,20 +32,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#151515" "#ac4142" "#90a959" "#f4bf75" "#6a9fb5" "#aa759f" "#6a9fb5" "#d0d0d0"])
- '(ansi-term-color-vector
-   [unspecified "#151515" "#ac4142" "#90a959" "#f4bf75" "#6a9fb5" "#aa759f" "#6a9fb5" "#d0d0d0"])
  '(custom-safe-themes
    (quote
-    ("36282815a2eaab9ba67d7653cf23b1a4e230e4907c7f110eebf3cdf1445d8370" "2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "9be1d34d961a40d94ef94d0d08a364c3d27201f3c98c9d38e36f10588469ea57" "73ad471d5ae9355a7fa28675014ae45a0589c14492f52c32a4e9b393fcc333fd" "760ce657e710a77bcf6df51d97e51aae2ee7db1fba21bbad07aab0fa0f42f834" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" default)))
+    ("0268ec40fab7607cb796e066e4942102d2155c73e60af5bb407d42bc16ab1f8b" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "f50f3f6547acd9d127fc51886d0d9492ac1858339bf5c2dfea902dbc7b9bf09b" default)))
  '(lsp-ui-peek-always-show nil)
  '(lsp-ui-sideline-enable t)
  '(lsp-ui-sideline-ignore-duplicate t)
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (csound-mode git-gutter emamux use-package lsp-imenu elixir-mode web-mode lsp-go lsp-javascript-typescript multiple-cursors lsp-python lsp-rust lsp-vue company-lsp lsp-ui lsp-mode helm-company company json-mode helm-flycheck flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides helm-cscope helm-go-package helm-pydoc magit airline-themes all-the-icons base16-theme go-mode helm neotree powerline rust-mode)))
+    (lsp-python-ms csound-mode emamux web-mode elixir-mode multiple-cursors company-lsp lsp-ui lsp-mode helm-company company flycheck python-mode git-gutter magit highlight-indent-guides helm neotree all-the-icons airline-themes base16-theme powerline use-package)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -65,7 +61,7 @@
 ;;; base16
 (use-package base16-theme
   :ensure base16-theme)
-(load-theme 'base16-classic-dark t)
+(load-theme 'base16-horizon-dark t)
 
 ;;; airline-themes
 (use-package airline-themes
@@ -231,43 +227,12 @@
 
 ;;; lsp-mode
 (use-package lsp-mode
-  :ensure lsp-mode)
+  :ensure lsp-mode
+  :config
+  (setq lsp-enable-snippet nil))
 (require 'lsp-mode)
+(add-hook 'prog-mode-hook #'lsp)
 
-;;; lsp-python
-(use-package lsp-python
-  :ensure lsp-python)
-(require 'lsp-python)
-
-;;; lsp-rust
-(use-package lsp-rust
-  :ensure lsp-rust)
-(with-eval-after-load 'lsp-mode
-  (setq lsp-rust-rls-command '("rls"))
-  (require 'lsp-rust))
-
-;;; lsp-go
-(use-package lsp-go
-  :ensure lsp-go)
-(require 'lsp-go)
-
-;;; lsp-javascript-typescript
-(use-package lsp-javascript-typescript
-  :ensure lsp-javascript-typescript)
-(require 'lsp-javascript-typescript)
-
-
-(add-hook 'python-mode-hook #'lsp-python-enable)
-(add-hook 'python-mode-hook #'flycheck-mode)
-(add-hook 'rust-mode-hook #'lsp-rust-enable)
-(add-hook 'rust-mode-hook #'flycheck-mode)
-(add-hook 'js-mode-hook #'lsp-javascript-typescript-enable)
-(add-hook 'typescript-mode-hook #'lsp-javascript-typescript-enable)
-
-(lsp-define-stdio-client
- lsp-elixir "elixir" (lambda () default-directory) '("~/.local/bin/language_server"))
-(add-hook 'elixir-mode-hook #'lsp-elixir)
-(add-hook 'elixir-mode-hook #'flycheck-mode)
 
 ;;; lsp-ui
 (use-package lsp-ui
@@ -283,13 +248,17 @@
 
 (setq company-lsp-async 1)
 
-;;; lsp-imenu
-(require 'lsp-imenu)
-(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-(global-set-key [f7] 'lsp-ui-imenu)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
-(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+(use-package lsp-python-ms
+  :ensure t
+  :demand
+  :hook (python-mode . lsp)
+  :config
+  (setq lsp-python-ms-executable
+        "~/.local/bin/mspyls"))
 
 ;;; multiple-cursors
 (use-package multiple-cursors
