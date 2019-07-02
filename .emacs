@@ -4,7 +4,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(when (window-system)
+(when (display-graphic-p)
   (set-frame-font "Iosevka SS10:pixelsize=16"))
 
 (set-language-environment "UTF-8")
@@ -15,6 +15,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(set-display-table-slot standard-display-table 'vertical-border ?│)
+
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -41,7 +43,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (lsp-python-ms csound-mode emamux web-mode elixir-mode multiple-cursors company-lsp lsp-ui lsp-mode helm-company company flycheck python-mode git-gutter magit highlight-indent-guides helm neotree all-the-icons airline-themes base16-theme powerline use-package)))
+    (helm-lsp lsp-python-ms csound-mode emamux web-mode elixir-mode multiple-cursors company-lsp lsp-ui lsp-mode helm-company company flycheck python-mode git-gutter magit highlight-indent-guides helm neotree all-the-icons airline-themes base16-theme powerline use-package)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -67,9 +69,7 @@
 (use-package airline-themes
   :ensure airline-themes)
 (require 'airline-themes)
-(load-theme 'airline-base16-shell-dark :no-confirm)
-(when (window-system)
-  (load-theme 'airline-base16-gui-dark :no-confirm))
+(load-theme (if (display-graphic-p) 'airline-base16-gui-dark 'airline-base16-shell-dark) :no-confirm)
 
 ;;; all-the-icons
 (use-package all-the-icons
@@ -260,11 +260,15 @@
   (setq lsp-python-ms-executable
         "~/.local/bin/mspyls"))
 
+(use-package helm-lsp
+  :ensure t
+  :demand)
+
 ;;; multiple-cursors
 (use-package multiple-cursors
   :ensure multiple-cursors)
 (require 'multiple-cursors)
-
+;; 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
