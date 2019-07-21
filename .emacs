@@ -54,7 +54,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (dap-mode ivy-xref counsel ivy ini-mode ansible emacs-ansible yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
+    (writeroom-mode dap-mode ivy-xref counsel ivy ini-mode ansible emacs-ansible yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -340,6 +340,11 @@
   :demand t
   :config
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
+
+;;; writeroom-mode
+(use-package writeroom-mode
+  :ensure t
+  :demand t)
 
 
 (provide '.emacs)
