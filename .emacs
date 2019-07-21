@@ -42,6 +42,8 @@
  '(custom-safe-themes
    (quote
     ("c79c2eadd3721e92e42d2fefc756eef8c7d248f9edefd57c4887fbf68f0a17af" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "a94f1a015878c5f00afab321e4fef124b2fc3b823c8ddd89d360d710fc2bddfc" "f50f3f6547acd9d127fc51886d0d9492ac1858339bf5c2dfea902dbc7b9bf09b" "23a8142a86e2c77340d514d8186fa128994e344b1d8d0f3e805a2378c6ea1df2" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "36282815a2eaab9ba67d7653cf23b1a4e230e4907c7f110eebf3cdf1445d8370" "2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "9be1d34d961a40d94ef94d0d08a364c3d27201f3c98c9d38e36f10588469ea57" "73ad471d5ae9355a7fa28675014ae45a0589c14492f52c32a4e9b393fcc333fd" "760ce657e710a77bcf6df51d97e51aae2ee7db1fba21bbad07aab0fa0f42f834" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" default)))
+ '(dap-mode t nil (dap-mode))
+ '(dap-ui-mode t nil (dap-ui))
  '(emamux:completing-read-type (quote normal))
  '(emamux:default-orientation (quote vertical))
  '(emamux:runner-pane-height 30)
@@ -54,7 +56,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (writeroom-mode dap-mode ivy-xref counsel ivy ini-mode ansible emacs-ansible yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
+    (vue-mode writeroom-mode dap-mode ivy-xref counsel ivy ini-mode ansible emacs-ansible yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -346,6 +348,10 @@
   :ensure t
   :demand t)
 
+;;; vue-mode
+(use-package vue-mode
+  :ensure t
+  :demand t)
 
 (provide '.emacs)
 ;;; .emacs ends here
