@@ -56,7 +56,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (vue-mode writeroom-mode dap-mode ivy-xref counsel ivy ini-mode ansible emacs-ansible yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
+    (projectile delight vue-mode writeroom-mode dap-mode ivy-xref counsel ivy ini-mode yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit airline-themes base16-theme go-mode neotree powerline rust-mode)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -76,6 +76,16 @@
  '(whitespace-line ((t (:background "red" :foreground "black")))))
 
 (show-paren-mode 1)
+
+;;; delight
+(use-package delight
+  :ensure t
+  :demand t
+  :config
+  (delight '((auto-revert-mode nil "autorevert")
+	     (eldoc-mode nil "eldoc")
+	     (emacs-lisp-mode "Elisp" :major)
+	     (whitespace-mode nil "whitespace"))))
 
 ;;; powerline
 (use-package powerline
@@ -121,7 +131,8 @@
 
 ;;; highlight-indent-guides
 (use-package highlight-indent-guides
-  :ensure highlight-indent-guides)
+  :ensure highlight-indent-guides
+  :delight)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-auto-character-face-perc 25)
@@ -134,7 +145,8 @@
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
 (use-package git-gutter
-  :ensure git-gutter)
+  :ensure git-gutter
+  :delight)
 (global-git-gutter-mode +1)
 (global-set-key (kbd "C-x C-g") 'git-gutter)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
@@ -187,6 +199,7 @@
 ;;; company
 (use-package company
   :ensure company
+  :delight
   :commands global-company-mode
   :init (add-hook 'after-init-hook 'global-company-mode))
 
@@ -281,12 +294,6 @@
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
 
-;;; ansible mode
-(use-package ansible
-  :ensure t
-  :config
-  (add-hook 'yaml-mode-hook '(lambda () (ansible 1))))
-
 ;;; ini mode
 (use-package ini-mode
   :ensure t
@@ -298,6 +305,7 @@
 (use-package ivy
   :ensure t
   :demand t
+  :delight
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
@@ -310,12 +318,14 @@
 (use-package counsel
   :ensure t
   :demand t
+  :delight
   :config
   (counsel-mode 1)
   (global-set-key (kbd "<f6>") 'counsel-rg))
 
 (use-package swiper
-  :ensure t)
+  :ensure t
+  :delight)
 
 (use-package ivy-xref
   :ensure t
@@ -352,6 +362,13 @@
 (use-package vue-mode
   :ensure t
   :demand t)
+
+(use-package projectile
+  :ensure t
+  :demand t
+  :config
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (provide '.emacs)
 ;;; .emacs ends here
