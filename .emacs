@@ -95,8 +95,11 @@
 
 ;;; base16
 (use-package base16-theme
-  :ensure base16-theme)
-(load-theme 'base16-horizon-dark t)
+  :ensure base16-theme
+  :demand t
+  :config
+  (setq base16-theme-256-color-source 'base16-shell)
+  (load-theme 'base16-horizon-dark t))
 
 ;;; airline-themes
 (use-package airline-themes
@@ -339,7 +342,11 @@
   :demand t
   :init
   (dap-ui-mode 1)
-  (require 'dap-python))
+  (require 'dap-python)
+  (require 'dap-elixir)
+  (require 'dap-gdb-lldb)
+  (require 'dap-go)
+  (require 'dap-firefox))
 
 ;;; go-mode
 (use-package go-mode
