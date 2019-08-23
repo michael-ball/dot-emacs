@@ -145,8 +145,13 @@
  '(sml/read-only ((t (:inherit (font-lock-type-face sml/not-modified) :foreground "#24A8B4"))))
  '(success ((t (:foreground "#09F7A0" :weight bold))))
  '(tooltip ((t (:inherit default :background "#6C6F93"))))
- '(vertical-border ((t (:background "#1C1E26" :foreground "#6F6F70"))))
- '(whitespace-line ((t (:background "red" :foreground "black")))))
+ '(vertical-border ((t (:background "#1C1E26" :foreground "#232530"))))
+ '(warning ((t (:foreground "#E4A382" :weight bold))))
+ '(web-mode-error-face ((t (:background "#E93C58"))))
+ '(whitespace-big-indent ((t (:background "#E93C58"))))
+ '(whitespace-line ((t (:background "#E93C58" :foreground "#1C1E26"))))
+ '(whitespace-trailing ((t (:background "#E93C58" :foreground "#EFB993"))))
+ '(yaml-tab-face ((t (:background "#E93C58" :foreground "#E93C58" :weight bold)))))
 
 (show-paren-mode 1)
 
