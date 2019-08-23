@@ -436,5 +436,9 @@
   :init
   (sml/setup))
 
+(use-package sclang-extensions
+  :ensure t
+  :demand t)
+
 (provide '.emacs)
 ;;; .emacs ends here
