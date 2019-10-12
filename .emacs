@@ -6,8 +6,8 @@
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-(add-to-list 'default-frame-alist '(font . "Iosevka SS10:pixelsize=16" ))
-(set-face-attribute 'default t :font "Iosevka SS10:pixelsize=16" )
+(add-to-list 'default-frame-alist '(font . "Iosevka Custom:pixelsize=16" ))
+(set-face-attribute 'default t :font "Iosevka Custom:pixelsize=16" )
 
 
 (set-language-environment "UTF-8")
@@ -19,7 +19,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-display-table-slot standard-display-table 'vertical-border ?┃)
-(set-face-foreground 'vertical-border "color-236")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -59,7 +58,7 @@
  '(org-agenda-files (quote ("~/orgmode.org")))
  '(package-selected-packages
    (quote
-    (xclip smart-mode-line projectile delight vue-mode writeroom-mode dap-mode ivy-xref counsel ivy ini-mode yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit base16-theme go-mode neotree rust-mode)))
+    (ivy-mpdel mpdel sclang-extensions xclip smart-mode-line projectile delight vue-mode writeroom-mode dap-mode ivy-xref counsel ivy ini-mode yaml-mode lsp-python-ms csound-mode git-gutter emamux use-package elixir-mode web-mode multiple-cursors company-lsp lsp-ui lsp-mode company json-mode flycheck cygwin-mount python-mode typescript-mode org highlight-indent-guides magit base16-theme go-mode neotree rust-mode)))
  '(safe-local-variable-values (quote ((engine . jinja2) (engine . jinja))))
  '(sml/no-confirm-load-theme t)
  '(sml/theme (quote respectful)))
@@ -69,8 +68,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#1c1e26" :foreground "#cbced0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 1 :width normal :foundry "default" :family "default"))))
- '(company-tooltip ((t (:inherit tooltip))))
+ '(company-scrollbar-bg ((t (:background "#CBCED0"))))
+ '(company-tooltip ((t (:background "#2E303E"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-common))))
  '(company-tooltip-mouse ((t (:inherit highlight))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face :background "#6F6F70"))))
  '(cursor ((t (:background "#E93C58"))))
  '(custom-group-tag ((t (:foreground "#E93C58"))))
  '(custom-variable-tag ((t (:foreground "#E93C58"))))
@@ -83,7 +86,7 @@
  '(font-lock-comment-face ((t (:foreground "#6F6F70" :slant oblique))))
  '(font-lock-constant-face ((t (:foreground "#E58D7D" :weight bold))))
  '(font-lock-doc-face ((t (:foreground "#24A8B4" :slant oblique))))
- '(font-lock-function-name-face ((t (:foreground "#25B2BC" :weight bold :height 1.1))))
+ '(font-lock-function-name-face ((t (:foreground "#25B2BC" :weight bold))))
  '(font-lock-keyword-face ((t (:foreground "#B072D1" :weight bold))))
  '(font-lock-negation-char-face ((t (:foreground "#09F7A0"))))
  '(font-lock-preprocessor-face ((t (:foreground "#25B2BC" :slant italic))))
@@ -110,10 +113,10 @@
  '(lazy-highlight ((t (:background "#6F6F70"))))
  '(link ((t (:foreground "#25B2BC" :underline t))))
  '(link-visited ((t (:foreground "#B877DB" :underline t))))
- '(lsp-face-highlight-read ((t (:inherit highlight :foreground "black" :underline t))))
- '(lsp-face-highlight-textual ((t (:inherit highlight :foreground "black"))))
- '(lsp-face-highlight-write ((t (:inherit highlight :foreground "black" :slant italic))))
- '(lsp-ui-doc-background ((t (:background "color-19"))))
+ '(lsp-face-highlight-read ((t (:inherit highlight :foreground "#1C1E26" :underline t))))
+ '(lsp-face-highlight-textual ((t (:inherit highlight :foreground "#1C1E26"))))
+ '(lsp-face-highlight-write ((t (:inherit highlight :foreground "#1C1E26" :slant italic))))
+ '(lsp-ui-doc-background ((t (:background "#232530"))))
  '(lsp-ui-peek-filename ((t (:foreground "#F09383"))))
  '(lsp-ui-peek-header ((t (:background "#232530" :foreground "#9DA0A2"))))
  '(lsp-ui-peek-highlight ((t (:background "#232530" :distant-foreground "#DCDFE4" :foreground "#9DA0A2" :box (:line-width -1 :color "#DCDFE4")))))
@@ -156,7 +159,7 @@
  '(sml/read-only ((t (:inherit (font-lock-type-face sml/not-modified) :foreground "#24A8B4"))))
  '(success ((t (:foreground "#09F7A0" :weight bold))))
  '(tooltip ((t (:inherit default :background "#6C6F93"))))
- '(vertical-border ((t (:background "#1C1E26" :foreground "#232530"))))
+ '(vertical-border ((t (:background "#1C1E26" :foreground "#2E303E"))))
  '(warning ((t (:foreground "#E4A382" :weight bold))))
  '(web-mode-error-face ((t (:background "#E93C58"))))
  '(whitespace-big-indent ((t (:background "#E93C58"))))
@@ -301,8 +304,10 @@
 
 ;;; emamux
 (use-package emamux
-  :ensure emamux)
-(global-set-key (kbd "C-z") emamux:keymap)
+  :ensure emamux
+  :demand t
+  :init
+  (global-set-key (kbd "C-z") emamux:keymap))
 
 ;;; csound
 (use-package csound-mode
@@ -453,6 +458,15 @@
   (sml/setup))
 
 (use-package sclang-extensions
+  :ensure t
+  :demand t)
+
+(use-package mpdel
+  :ensure t
+  :demand t
+  :delight)
+
+(use-package ivy-mpdel
   :ensure t
   :demand t)
 
