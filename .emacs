@@ -317,11 +317,7 @@
 (use-package lsp-python-ms
   :ensure t
   :demand t
-  :hook (python-mode . lsp)
-  :config
-    ;; for executable of language server, if it's not symlinked on your PATH
-  (setq lsp-python-ms-executable
-        "/usr/bin/mspyls"))
+  :hook (python-mode . lsp))
 
   (provide 'init-python)
 
