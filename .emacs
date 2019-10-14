@@ -9,7 +9,6 @@
 (add-to-list 'default-frame-alist '(font . "Iosevka Custom:pixelsize=16" ))
 (set-face-attribute 'default t :font "Iosevka Custom:pixelsize=16" )
 
-
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (setq default-directory "~/" )
@@ -19,6 +18,11 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-display-table-slot standard-display-table 'vertical-border ?┃)
+(setq-default abbrev-mode nil)
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
