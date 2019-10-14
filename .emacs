@@ -464,7 +464,8 @@
 (use-package mpdel
   :ensure t
   :demand t
-  :delight)
+  :delight
+  :config (mpdel-mode t))
 
 (use-package ivy-mpdel
   :ensure t
