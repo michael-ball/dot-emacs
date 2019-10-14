@@ -444,12 +444,14 @@
   :ensure t
   :demand t
   :config
+  (projectile-mode 1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package xclip
   :ensure t
-  :demand t)
+  :config
+  (xclip-mode 1))
 
 (use-package smart-mode-line
   :ensure t
@@ -465,7 +467,7 @@
   :ensure t
   :demand t
   :delight
-  :config (mpdel-mode t))
+  :config (mpdel-mode 1))
 
 (use-package ivy-mpdel
   :ensure t
